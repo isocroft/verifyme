@@ -22,7 +22,7 @@ This project provides an easy-to-use object-oriented API to access endpoints del
 
 ```js
 
-let VerifyMe = require('paystack-node')
+let VerifyMe = require('verifyme-node')
 
 let API_TEST_KEY = ''
 let API_LIVE_KEY = ''
