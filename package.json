@@ -1,0 +1,48 @@
+{
+  "name": "verifyme-node",
+  "version": "0.1.0",
+  "description": "A NodeJS wrapper for the VerifyMe API",
+  "main": "index.js",
+  "files": [
+    "src",
+    "index.js"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha \"test/*.test.js\""
+  },
+  "keywords": [
+    "paystack",
+    "payments",
+    "nodejs",
+    "api-endpoints",
+    "rest-api"
+  ],
+  "author": "Ifeora Okechukwu <isocroft@gmail.com> (https://twitter.com/isocroft)",
+  "license": "MIT",
+  "standard": {
+    "globals": [
+      "describe",
+      "it"
+    ]
+  },
+  "dependencies": {
+    "got": "^9.3.2",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "standard": "^12.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isocroft/verifyme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isocroft/verifyme/issues"
+  },
+  "homepage": "https://github.com/isocroft/verifyme#readme"
+}
