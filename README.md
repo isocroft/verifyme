@@ -31,7 +31,7 @@ const environment = process.env.NODE_ENV
 
 const verifyme = new VerifyMe(
     environment !== 'production' ? API_TEST_KEY : API_LIVE_KEY,
-    environment
+    environment === 'production'
 )
 ```
 
@@ -48,31 +48,27 @@ let API_TEST_API = ''
 const environment = process.env.NODE_ENV
 
 const verifyme = new VerifyMe(
-    APIKEY,
-    environment
+    environment !== 'production' ? API_TEST_KEY : API_LIVE_KEY,
+    environment === 'production'
 )
 
 // call the real API methods
-const { body } = verifyme.chargeCard({
+const { body } = verifyme.getEmploymentHistoryValidityResult({
 })
 
 // mocking call made on the constructor
 
-// start mocking (without making http request using test persona)
+// start mocking (with or without making http request using test persona)
 VerifyMe.engageMock()
 
-// start mocking (while making http request using test persona)
-VerifyMe.engageMock({
-    pingRemoteTestPersona: true
-})
 
 // call the mock API methods
-const { body } = await verifyme.chargeBank({
+const { body } = await verifyme.getEmploymentHistoryValidityResult({
 })
 
 // replace mocked methods (! don't use arrow functions !)
 VerifyMe.mockMacro(
-  '', 
+  'getPhotoMatchValidityResult', 
   async function j (reqPayload = {}) {
     // validation for (reqPayload) is already taken care of!
 
@@ -82,7 +78,7 @@ VerifyMe.mockMacro(
     return { status: 200, body: { status: "success", data: reqPayload } };
 })
 
-const { body } = await verifyme.getCustomers({
+const { body } = await verifyme.getPhotoMatchValidityResult({
 })
 
 // stop mocking
@@ -94,15 +90,14 @@ VerifyMe.disengageMock()
 
 >Each method expects an object literal with both **route parameters** and **request parameters (query / body)**. Please, go through the _src/endpoints_ folder to see the specific items that should make up the object literal for each method
 
-- xxxxxxx
-  - verifyme.createCustomer()
-  - verifyme.getCustomer()
-- yyyyyyy
-  - verifyme.listDisputes()
-- zzzzzzzz
-  - verifyme.createDedicatedNuban()
-- aaaaaaaaa
-  - verifyme.listDedicatedNubans()
+- employment
+  - verifyme.checkEmploymentHistoryValidity()
+  - verifyme.getEmploymentHistoryValidityResult()
+- biometrics
+  - verifyme.getPhotoMatchValidityResult()
+- guarantors
+  - verifyme.checkGuarantorPersonValidity()
+  - verifyme.getGuarantorPersonValidityResult()
 
 # License
 
