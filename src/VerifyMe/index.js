@@ -1,9 +1,11 @@
 'use strict'
 
-// const got = require('got')
+const got = require('got')
 const querystring = require('querystring')
 const FormData = require('form-data')
 const _ = require('lodash')
+
+const apiEndpoints = require('../endpoints')
 
 /*
  * Provides a convenience extension to _.isEmpty which allows for
@@ -315,14 +317,16 @@ _.mixin(function () {
         },
       }
     }
-    constructor (got, accessToken, isProd = true) {
+    constructor (accessToken, isProd = true) {
       super()
       /* eslint-disable camelcase */
       var api_base = {
         sandbox: 'https://vapi.verifyme.ng',
         live: 'https://vapi.verifyme.ng'
       }
-  
+
+      this.excludeOnMock = ['version']
+
       const bearerHeaderValue = `Bearer ${accessToken}`
       const clientOptions = this.httpClientBaseOptions
 

@@ -72,7 +72,7 @@ VerifyMe.mockMacro(
   async function j (reqPayload = {}) {
     // validation for (reqPayload) is already taken care of!
 
-    // @TODO: optionally, connect to a in-memory db (redis) for mocking purposes
+    // @TODO: optionally, create a ...
 
     // return mocked response object
     return { status: 200, body: { status: "success", data: reqPayload } };
@@ -95,7 +95,7 @@ VerifyMe.disengageMock()
   - verifyme.getEmploymentHistoryValidityResult()
 - biometrics
   - verifyme.getPhotoMatchValidityResult()
-- guarantors
+- guarantor
   - verifyme.checkGuarantorPersonValidity()
   - verifyme.getGuarantorPersonValidityResult()
 
