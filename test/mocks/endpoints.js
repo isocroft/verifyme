@@ -6,12 +6,13 @@ nock.enableNetConnect('127.0.0.1')
 
 /* @HINT: Mocking the VerifyMe API endpoint(s) */
 const scope = nock('https://vapi.verifyme.ng', {
-  reqheaders: {
-    'Content-Type': 'multipart/form-data; boundary=webkitAiuri773hnBSybcjNiikcnc',
-    'User-Agent': 'Mozilla/5.0 (compatible; Cloudinary/1.0)'
-  }
-})
+    reqheaders: {
+      'Content-Type': 'multipart/form-data; boundary=webkitAiuri773hnBSybcjNiikcnc',
+      'User-Agent': 'Mozilla/5.0 (compatible; Cloudinary/1.0)'
+    }
+  })
   .presist()
+  .matchHeader('Authorization', 'Bearer eyR.34hWyQ6HW73jS8p1IkXmSWOlE4y9Inhgyd6g5f2R7')
   .defaultReplyHeaders({
     'Date': (new Date()).toUTCString(),
     'Vary': 'User-Agent,Content-Type',
@@ -27,11 +28,24 @@ const scope = nock('https://vapi.verifyme.ng', {
     'Age': '0'
   })
   .replyContentLength()
-  .replyDate()
-  .post('/biometrics', body => Boolean(body.file))
+  .post('/v1/verifications/identities/biometrics', body => Boolean(body.file))
   .delayConnection(500)
   .delayBody(250)
   .reply(200, {
     secure_url: 'https://res.cloudinary.com/alpha-kapital/image/upload/s--klIoP56387sDbf94201znxm41wQ--/v1619727354/avatars/passport_1632751559326.jpg',
     url: 'https://res.cloudinary.com/alpha-kapital/image/upload/v1619727354/avatars/passport_1632751559326.jpg'
+  }, {
+    ETag: () => `${Date.now()}`,
+  })
+  .post('/v1/verifications/employment', { })
+  .reply(200, {
+
+  })
+  .post('/v1/verifications/guarantors', { })
+  .reply(200, {
+
+  })
+  .get('/v1/verifications/employment/retu46758')
+  .reply(200, {
+
   })

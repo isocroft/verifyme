@@ -94,7 +94,8 @@ VerifyMe.disengageMock()
   - verifyme.checkEmploymentHistoryValidity()
   - verifyme.getEmploymentHistoryValidityResult()
 - biometrics
-  - verifyme.getPhotoMatchValidityResult()
+  - verifyme.getPhotoFileMatchValidityResult()
+  - verifyme.getPhotoUrlMatchValidityResult()
 - guarantor
   - verifyme.checkGuarantorPersonValidity()
   - verifyme.getGuarantorPersonValidityResult()

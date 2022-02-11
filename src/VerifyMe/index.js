@@ -35,7 +35,7 @@ _.mixin(function () {
     let base64Regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
     return typeof b64String !== 'string'
       ? false
-      : b64String.length % 4 == 0 && base64Regex.test(b64String)
+      : b64String.length % 4 === 0 && base64Regex.test(b64String)
   }
   
   const isLiteralFalsey = (variable) => {
@@ -91,10 +91,10 @@ _.mixin(function () {
       offset) {
       let _value = values[string]
       return isTypeOf(
-        _value,
-        config.route_params[string]
+        config.route_params[string],
+        _value
       )
-        ? _value
+        ? config.route_params[string]
         : null
     })
   }
@@ -267,15 +267,11 @@ _.mixin(function () {
               httpConfig,
               { 'method': config.method }
             ))
-        } else if (isTypeOf(reqBody.card, Object) ||
-                   isTypeOf(reqBody.bank, Object)) {
-  
-          
-  
+        } else {
           // 
-          const isTestPersonaNIN = /^(?:057|011)$/.test(String(code))
+          const isTestPersonaNIN = /^(?:10000000001)$/.test(String(nin))
           /* eslint-disable-next-line camelcase */
-          const isTestPersonaName = account_number === '0000000000'
+          const isTestPersonaName = 'John Doe' === applicant.full_name
           const isTestFacePhoto = (isTestPersonaNIN && isTestPersonaName)
   
           if (!isTestFacePhoto) {
